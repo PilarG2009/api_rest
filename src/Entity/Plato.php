@@ -50,6 +50,8 @@ class Plato
      */
     private $alergenos;
 
+
+
     public function __construct()
     {
         $this->alergenos = new ArrayCollection();
@@ -143,4 +145,5 @@ class Plato
 
         return $this;
     }
+
 }
