@@ -3,13 +3,17 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\MunicipiosRepository;
 
 /**
  * Municipios
  *
  * @ORM\Table(name="municipios", indexes={@ORM\Index(name="IDX_BBFAB58653AF4E34", columns={"id_provincia"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass=MunicipiosRepository::class)
  */
+
+//hemos añadido repositoryclass a mano pq al importarlo de 1 archivo, no se ha creado
+
 class Municipios
 {
     /**
