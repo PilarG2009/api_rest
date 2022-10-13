@@ -40,7 +40,7 @@ class DireccionRepository extends ServiceEntityRepository
     }
 
 //    /**
-//     * @return Direccion[] Returns an array of Direccion objects
+//     * @return DirecciónController[] Returns an array of DirecciónController objects
 //     */
 //    public function findByExampleField($value): array
 //    {
@@ -54,7 +54,7 @@ class DireccionRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?Direccion
+//    public function findOneBySomeField($value): ?DirecciónController
 //    {
 //        return $this->createQueryBuilder('d')
 //            ->andWhere('d.exampleField = :val')
