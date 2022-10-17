@@ -5,8 +5,8 @@ App\Entity\Direccion:
   properties:
     calle:
       - NotBlank: ~
-    cod_postal:
-      - NotBlank: ~
     numero:
+      - NotBlank: ~
+    cod_postal:
       - NotBlank: ~
 

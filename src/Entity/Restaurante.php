@@ -25,7 +25,7 @@ class Restaurante
     private $nombre;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $logo_url;
 
@@ -40,7 +40,7 @@ class Restaurante
     private $descripcion;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
+     * @ORM\Column(type="boolean")
      */
     private $destacado;
 
@@ -63,6 +63,12 @@ class Restaurante
      * @ORM\OneToMany(targetEntity=Pedido::class, mappedBy="restaurante", orphanRemoval=true)
      */
     private $pedidos;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Municipios::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $municipio;
 
     public function __construct()
     {
@@ -247,6 +253,18 @@ class Restaurante
                 $pedido->setRestaurante(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getMunicipio(): ?Municipios
+    {
+        return $this->municipio;
+    }
+
+    public function setMunicipio(?Municipios $municipio): self
+    {
+        $this->municipio = $municipio;
 
         return $this;
     }

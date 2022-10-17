@@ -46,5 +46,4 @@ class Provincias
         return $this;
     }
 
-
 }

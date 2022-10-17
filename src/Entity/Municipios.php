@@ -28,9 +28,9 @@ class Municipios
     /**
      * @var string|null
      *
-     * @ORM\Column(name="municipio", type="string", length=255, nullable=true, options={"default"="NULL"})
+     * @ORM\Column(name="municipio", type="string", length=255, nullable=true)
      */
-    private $municipio = 'NULL';
+    private $municipio;
 
     /**
      * @var \Provincias
