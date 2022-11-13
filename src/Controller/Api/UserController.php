@@ -76,7 +76,8 @@ class UserController extends AbstractFOSRestController
             $user['password']
         );
         $newUser->setPassword($hashedPassword);
-        // Creamos al cliente
+
+        // Creamos al cliente:
         $form = $this->createForm(ClienteType::class);
         $form->submit($cliente);
         if(!$form->isSubmitted() || !$form->isValid()) {
