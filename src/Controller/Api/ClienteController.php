@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 // Establecemos la ruta padre
 
 /**
- * @Rest\Route("cliente")
+ * @Rest\Route("/cliente")
  */
 class ClienteController extends AbstractFOSRestController
 {

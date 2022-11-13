@@ -32,7 +32,7 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
          - { path: ^/api/login_check, roles: PUBLIC_ACCESS }  # Para que deje entrar al login
-         - { path: ^/api/user/, roles: PUBLIC_ACCESS }
+         - { path: ^/api/user/, roles: PUBLIC_ACCESS } # Para que deje entrar al login
          - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }  # Para proteger con jwt al resto de endpoints
 
     role_hierarchy:

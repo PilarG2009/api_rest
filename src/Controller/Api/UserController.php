@@ -2,8 +2,11 @@
 
 namespace App\Controller\Api;
 
+use App\Entity\Cliente;
 use App\Entity\User;
+use App\Form\ClienteType;
 use App\Form\UserType;
+use App\Repository\ClienteRepository;
 use App\Repository\UserRepository;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
 use FOS\RestBundle\Controller\Annotations as Rest;
@@ -17,10 +20,14 @@ class UserController extends AbstractFOSRestController
 {
    private $repo;
    private $hasher;
+   private $clienterepo;
 
-   public function __construct(UserRepository $repo, UserPasswordHasherInterface $hasher) {
+   public function __construct(UserRepository $repo, UserPasswordHasherInterface $hasher,
+        ClienteRepository $clienterepo
+   ) {
        $this->repo = $repo;
        $this->hasher = $hasher;
+       $this->clienterepo = $clienterepo;
    }
 
    // Endopoint para registrar a los usuarios
@@ -37,11 +44,18 @@ class UserController extends AbstractFOSRestController
          *       "password": ...
          *          }
          *  "role": ----
+         *  "cliente": {
+         *              "nombre":
+         *              "apellidos":
+         *              "telefono":
+     *                  }
          * }
          */
         // Me lo guarda en formato array
         $user = $request->get('user');
         $role = $request->get('role');
+        $cliente = $request->get('cliente');
+
         //Enviarlo al form
         $form = $this->createForm(UserType::class);
         $form->submit($user);
@@ -62,9 +76,22 @@ class UserController extends AbstractFOSRestController
             $user['password']
         );
         $newUser->setPassword($hashedPassword);
+        // Creamos al cliente
+        $form = $this->createForm(ClienteType::class);
+        $form->submit($cliente);
+        if(!$form->isSubmitted() || !$form->isValid()) {
+            return $form;
+        }
+        /**
+         * @var Cliente $newCliente
+         */
+        $newCliente = $form->getData();
+        $newCliente->setUser($newUser);
+
         //Guardamos en BD
+        $this->clienterepo->add($newCliente, true);
         $this->repo->add($newUser, true);
-        return $newUser;
+        return $newCliente;
     }
 
 }
